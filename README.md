@@ -11,8 +11,6 @@ Paremeters:
 
  Thanks to: 
 
- [https://bitbucket.org/kardianos/osext](https://bitbucket.org/kardianos/osext)
-
- [https://github.com/abbot/go-http-auth](https://github.com/abbot/go-http-auth)
-
- [https://github.com/alecthomas/log4go](https://github.com/alecthomas/log4go)
+ - [https://bitbucket.org/kardianos/osext](https://bitbucket.org/kardianos/osext)
+ - [https://github.com/abbot/go-http-auth](https://github.com/abbot/go-http-auth)
+ - [https://github.com/alecthomas/log4go](https://github.com/alecthomas/log4go)
