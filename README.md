@@ -5,9 +5,8 @@ Needs .htpasswd file at the sime directory with compiled binary to run.
 
 Paremeters:
 
- +Listening Port (eg: 3000)
-
- +Absolute path to write log files (eg: /var/log/my-logs/)
+ -Listening Port (eg: 3000)
+ -Absolute path to write log files (eg: /var/log/my-logs/)
 
 
  Thanks to: 
