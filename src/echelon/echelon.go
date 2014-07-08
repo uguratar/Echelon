@@ -9,6 +9,8 @@ import (
         "os"
         "time"
         "encoding/json"
+        "github.com/scorredoira/email"
+        "net/smtp"
         l4g "github.com/alecthomas/log4go"
 )
 
@@ -126,7 +128,6 @@ func handle(w http.ResponseWriter, r *http.Request) {
             f, err := os.Create(os.Args[2]+filename)
             if err != nil {
                w.WriteHeader(http.StatusInternalServerError)
-               fmt.Fprintf(w, "%s", err)
                log.Error("File create error (%s): %s ", filename, err)
                return
 
@@ -137,12 +138,22 @@ func handle(w http.ResponseWriter, r *http.Request) {
             _, err = io.WriteString(f, filebuffer)
             if err != nil {
                w.WriteHeader(http.StatusInternalServerError)
-               fmt.Fprintf(w, "%s", err)
                log.Error("File write error (%s): %s ", filename, err)
                return
 
             }
             f.Close()
+
+
+            m := email.NewMessage("Socialeyes feedback", "The feedback file is attached!")
+            m.From = "support@socialeyesapp.com"
+            m.To = []string{"recipient@example.org","recipient2@example.org"}
+            error := m.Attach(os.Args[2]+filename)
+            if error != nil {
+                log.Info("Successfully sent notification mail.")
+            }
+
+            error = email.Send("smtp.gmail.com:587", smtp.PlainAuth("", "username@example.org", "<password>", "smtp.gmail.com"), m)
 
         fmt.Fprintf(w, "%s", filename)
         log.Info("Successfully wrote data to: "+ filename)
